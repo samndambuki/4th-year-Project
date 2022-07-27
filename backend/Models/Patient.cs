@@ -3,10 +3,8 @@ using System.ComponentModel.DataAnnotations;
 namespace patient.Models {
  public class Patient{
 
-  [Required]
-  [MaxLength(100)]
   [Key]
-  public string patientId { get; set; } = string.Empty;
+  public int patientId { get; set; }
   public string PatientName { get; set; } = string.Empty;
   public string PhoneNumber { get; set; } = string.Empty;
   public string  Password { get; set; } = string.Empty;

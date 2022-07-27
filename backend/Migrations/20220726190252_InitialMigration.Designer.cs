@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace backend.Data.Migration
+namespace backend.Migrations
 {
     [DbContext(typeof(ehealthdbcontext))]
-    [Migration("20220725104026_InitialMigration")]
+    [Migration("20220726190252_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,9 +25,12 @@ namespace backend.Data.Migration
 
             modelBuilder.Entity("doctor.Models.Doctor", b =>
                 {
-                    b.Property<string>("doctorId")
+                    b.Property<int>("doctorId")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("doctorId"), 1L, 1);
 
                     b.Property<DateTime>("Availability")
                         .HasColumnType("datetime2");
@@ -48,20 +51,22 @@ namespace backend.Data.Migration
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("specialtyId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("specialtyId")
+                        .HasColumnType("int");
 
                     b.HasKey("doctorId");
 
-                    b.ToTable("Doctors");
+                    b.ToTable("DoctorsData");
                 });
 
             modelBuilder.Entity("patient.Models.Patient", b =>
                 {
-                    b.Property<string>("patientId")
+                    b.Property<int>("patientId")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("patientId"), 1L, 1);
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -89,14 +94,17 @@ namespace backend.Data.Migration
 
                     b.HasKey("patientId");
 
-                    b.ToTable("Patients");
+                    b.ToTable("PatientsData");
                 });
 
             modelBuilder.Entity("schedule.Models.Schedule", b =>
                 {
-                    b.Property<string>("scheduleId")
+                    b.Property<int>("scheduleId")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("scheduleId"), 1L, 1);
 
                     b.Property<DateTime>("Availability")
                         .HasColumnType("datetime2");
@@ -109,20 +117,25 @@ namespace backend.Data.Migration
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("specialtyId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("doctorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("specialtyId")
+                        .HasColumnType("int");
 
                     b.HasKey("scheduleId");
 
-                    b.ToTable("Schedules");
+                    b.ToTable("SchedulesData");
                 });
 
             modelBuilder.Entity("specialty.Models.Specialty", b =>
                 {
-                    b.Property<string>("specialtyId")
+                    b.Property<int>("specialtyId")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("specialtyId"), 1L, 1);
 
                     b.Property<string>("DoctorName")
                         .IsRequired()
@@ -132,9 +145,12 @@ namespace backend.Data.Migration
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("doctorId")
+                        .HasColumnType("int");
+
                     b.HasKey("specialtyId");
 
-                    b.ToTable("Specialties");
+                    b.ToTable("SpecialtiesData");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,34 +3,36 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace backend.Data.Migration
+namespace backend.Migrations
 {
     public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Doctors",
+                name: "DoctorsData",
                 columns: table => new
                 {
-                    doctorId = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    doctorId = table.Column<int>(type: "int", maxLength: 100, nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DoctorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    specialtyId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    specialtyId = table.Column<int>(type: "int", nullable: false),
                     SpecialtyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Availability = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Doctors", x => x.doctorId);
+                    table.PrimaryKey("PK_DoctorsData", x => x.doctorId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Patients",
+                name: "PatientsData",
                 columns: table => new
                 {
-                    patientId = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    patientId = table.Column<int>(type: "int", maxLength: 100, nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PatientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -40,51 +42,55 @@ namespace backend.Data.Migration
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Patients", x => x.patientId);
+                    table.PrimaryKey("PK_PatientsData", x => x.patientId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Schedules",
+                name: "SchedulesData",
                 columns: table => new
                 {
-                    scheduleId = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    scheduleId = table.Column<int>(type: "int", maxLength: 100, nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    doctorId = table.Column<int>(type: "int", nullable: false),
                     DoctorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    specialtyId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    specialtyId = table.Column<int>(type: "int", nullable: false),
                     SpecialtyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Availability = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Schedules", x => x.scheduleId);
+                    table.PrimaryKey("PK_SchedulesData", x => x.scheduleId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Specialties",
+                name: "SpecialtiesData",
                 columns: table => new
                 {
-                    specialtyId = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    specialtyId = table.Column<int>(type: "int", maxLength: 100, nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    doctorId = table.Column<int>(type: "int", nullable: false),
                     DoctorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SpecialtyName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Specialties", x => x.specialtyId);
+                    table.PrimaryKey("PK_SpecialtiesData", x => x.specialtyId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Doctors");
+                name: "DoctorsData");
 
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "PatientsData");
 
             migrationBuilder.DropTable(
-                name: "Schedules");
+                name: "SchedulesData");
 
             migrationBuilder.DropTable(
-                name: "Specialties");
+                name: "SpecialtiesData");
         }
     }
 }
