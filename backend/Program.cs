@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ehealthdbcontext>(options => {
-    options.UseSqlServer(  "Server=(localdb)\\MSSQLLocalDB;Database=ehealthdb;Integrated Security=true");
+    options.UseSqlServer(  "Server=localhost;Database=ehealthdb;Integrated Security=true");
 });
 
 var app = builder.Build();

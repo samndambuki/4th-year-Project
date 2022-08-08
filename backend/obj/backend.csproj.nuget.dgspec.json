@@ -1,30 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SUN\\source\\repos\\4th Year Project\\backend\\backend.csproj": {}
+    "C:\\Users\\SAM\\projects\\4th-year-Project\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SUN\\source\\repos\\4th Year Project\\backend\\backend.csproj": {
+    "C:\\Users\\SAM\\projects\\4th-year-Project\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SUN\\source\\repos\\4th Year Project\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\SAM\\projects\\4th-year-Project\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\SUN\\source\\repos\\4th Year Project\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\SUN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SUN\\source\\repos\\4th Year Project\\backend\\obj\\",
+        "projectPath": "C:\\Users\\SAM\\projects\\4th-year-Project\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\SAM\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SAM\\projects\\4th-year-Project\\backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\SUN\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\SAM\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,13 +1,28 @@
 import Navigation from "./screens/navigationBar/NavigationBar";
 import "./App.css";
-import Home from "./screens/navigationBar/Home/Home";
+import Home from "./screens/Home/Home";
+import IndexDoctors from "./screens/doctors/IndexDoctors";
+import { BrowserRouter as Router,Routes, Route, BrowserRouter } from "react-router-dom";
 
-function App(){
+export default function App(){
  return(
-  <div className="App">
-   <Navigation/>
-   <Home/>
-   </div>
+  <BrowserRouter>
+  <Routes>
+    <Route path="/" 
+    element={<Navigation/>}
+    />
+    <Route path="home" 
+    element={<Home/>}
+    />
+    <Route path="navigation" 
+    element={<Navigation/>}
+    />
+    <Route path="doctor" 
+    element={<IndexDoctors/>}
+    />   
+  </Routes>
+  </BrowserRouter>
  );
 }
-export default App;
+
+

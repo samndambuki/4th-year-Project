@@ -1,14 +1,14 @@
 export const navigationLinks = [
  {
   name:"HOME",
-  ref:"#home"
+  ref:"home"
  },
  {
   name:"PATIENT",
-  ref:"#patient"
+  ref:"patient"
  },
  {
   name:"DOCTOR",
-  ref:"#doctor"
+  ref:"doctor"
  },
 ]
