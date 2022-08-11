@@ -1,15 +1,15 @@
 import React,{useState} from "react";
+import Constants from "../../utilities/Constants";
 
 export default function IndexDoctors(){
     const[doctors,setDoctors] = useState([]);
     function getDoctors(){
-        const url = "https://localhost:7031/api/Doctors";
+        const url = Constants.API_URL_GET_ALL_DOCTORS;
         fetch(url,{
             method:'GET'
     })
         .then(response=>response.json())
         .then(doctorsFromServer => {
-            console.log(doctorsFromServer);
             setDoctors(doctorsFromServer);
         })
         .catch((error)=>{
