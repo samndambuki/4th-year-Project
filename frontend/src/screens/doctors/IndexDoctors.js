@@ -1,8 +1,13 @@
 import React,{useState} from "react";
 import Constants from "../../utilities/Constants";
+import DoctorCreateForm from "../../components/DoctorCreateForm";
 
 export default function IndexDoctors(){
+
     const[doctors,setDoctors] = useState([]);
+    const[showingCreateNewDoctorForm,setshowingCreateNewDoctorForm] = useState([false]);
+
+
     function getDoctors(){
         const url = Constants.API_URL_GET_ALL_DOCTORS;
         fetch(url,{
@@ -18,26 +23,33 @@ export default function IndexDoctors(){
         });
 
     }
+
     return (
         <div className="container">
             <div className="row-min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
-                    <div>
-                    <h1>Doctors Registration</h1>
-                    <div className="mt-5">
-                        <button onClick={getDoctors} className="btn btn-dark btn-lg w-100">
-                            Get Doctors From Server
-                        </button>
-                        <button onClick={() => {}} className="btn btn-secondary btn-lg w-100 mt-4">
-                            Create new Doctor
-                        </button>
-                    </div>
-                    </div>
-                    {doctors.length>0 && renderDoctorsTable()}
+                    {showingCreateNewDoctorForm === false && (
+                        <div>
+                        <h1>Doctors Registration</h1>
+                        <div className="mt-5">
+                            <button onClick={getDoctors} className="btn btn-dark btn-lg w-100">
+                                Get Doctors From Server
+                            </button>
+                            <button onClick={() => setshowingCreateNewDoctorForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
+                                Create new Doctor
+                            </button>
+                        </div>
+                        </div>
+                    )} 
+                    
+                    {(doctors.length>0 && showingCreateNewDoctorForm === false) && renderDoctorsTable()}
+                    {showingCreateNewDoctorForm && <DoctorCreateForm onDoctorCreated={onDoctorCreated}/>}
                 </div>
             </div>
             </div>
     );
+
+
     function renderDoctorsTable(){
         return(
             <div className="table-responsive mt-5">
@@ -103,4 +115,12 @@ export default function IndexDoctors(){
         );
     }
 
+    function onDoctorCreated(createdDoctor){
+        setshowingCreateNewDoctorForm(false);
+        if(createdDoctor === null){
+            return;
+        }
+        alert(`Doctor "${createdDoctor.doctorName}" successfully Registered`)
+        getDoctors();
+    }
 }
