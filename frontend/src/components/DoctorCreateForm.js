@@ -1,5 +1,6 @@
 import React,{useState} from "react"
-import Constants from "../../utilities/Constants";
+import Constants from "../utilities/Constants";
+
 
 export default function DoctorCreateForm(props){
 
@@ -24,15 +25,15 @@ const handleChange =(e) =>{
 const handleSubmit = (e) =>{
     e.preventDefault();
 
-    const doctorToCreate = (
-        doctorId = 0,
-        doctorname = formData.doctorname,
-        email = formData.email,
-        phonenumber = formData.phonenumber,
-        specialtyid = formData.specialtyid,
-        specialtyname = formData.specialtyname,
-        availability = formData.availability
-    );
+    const doctorToCreate = {
+        doctorId :0,
+        doctorname:formData.doctorname,
+        email:formData.email,
+        phonenumber:formData.phonenumber,
+        specialtyid:formData.specialtyid,
+        specialtyname:formData.specialtyname,
+        availability:formData.availability
+    };
 
     const url = Constants.API_URL_CREATE_DOCTOR;
 
@@ -57,10 +58,9 @@ const handleSubmit = (e) =>{
 };
 
       return(
-        <div>
             <form className="w-100 px-5">
                 <h1 className="mt-5">
-                    Create new Doctor
+                    Register new Doctor
                 </h1>
                 <div className="mt-5">
                     <label className="h3 form-label">Doctor's Name</label>
@@ -107,6 +107,5 @@ const handleSubmit = (e) =>{
                 </button>
 
             </form>
-        </div>
     );
 }

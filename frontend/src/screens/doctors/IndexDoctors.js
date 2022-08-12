@@ -36,7 +36,7 @@ export default function IndexDoctors(){
                                 Get Doctors From Server
                             </button>
                             <button onClick={() => setshowingCreateNewDoctorForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
-                                Create new Doctor
+                                Register new Doctor
                             </button>
                         </div>
                         </div>
@@ -120,7 +120,7 @@ export default function IndexDoctors(){
         if(createdDoctor === null){
             return;
         }
-        alert(`Doctor "${createdDoctor.doctorName}" successfully Registered`)
+        alert(`Doctor "${createdDoctor.doctorname}" successfully Registered`)
         getDoctors();
     }
 }
