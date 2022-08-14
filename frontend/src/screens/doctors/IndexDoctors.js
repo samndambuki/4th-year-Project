@@ -1,11 +1,13 @@
 import React,{useState} from "react";
 import Constants from "../../utilities/Constants";
 import DoctorCreateForm from "../../components/DoctorCreateForm";
+import DoctorUpdateForm from "../../components/DoctorCreateForm";
 
 export default function IndexDoctors(){
 
     const[doctors,setDoctors] = useState([]);
-    const[showingCreateNewDoctorForm,setshowingCreateNewDoctorForm] = useState([false]);
+    const[showingCreateNewDoctorForm,setshowingCreateNewDoctorForm] = useState(false);
+    const[doctorCurrentlyBeingUpdated,setdoctorCurrentlyBeingUpdated] = useState(null);
 
 
     function getDoctors(){
@@ -28,7 +30,7 @@ export default function IndexDoctors(){
         <div className="container">
             <div className="row-min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
-                    {showingCreateNewDoctorForm === false && (
+                    {(showingCreateNewDoctorForm === false && doctorCurrentlyBeingUpdated === null) && (
                         <div>
                         <h1>Doctors Registration</h1>
                         <div className="mt-5">
@@ -42,8 +44,9 @@ export default function IndexDoctors(){
                         </div>
                     )} 
                     
-                    {(doctors.length>0 && showingCreateNewDoctorForm === false) && renderDoctorsTable()}
+                    {(doctors.length>0 && showingCreateNewDoctorForm === false && doctorCurrentlyBeingUpdated === null) && renderDoctorsTable()}
                     {showingCreateNewDoctorForm && <DoctorCreateForm onDoctorCreated={onDoctorCreated}/>}
+                    {doctorCurrentlyBeingUpdated !== null && <DoctorUpdateForm doctor={doctorCurrentlyBeingUpdated} onDoctorUpdated={onDoctorUpdated}/>}
                 </div>
             </div>
             </div>
@@ -101,7 +104,7 @@ export default function IndexDoctors(){
                             <td>{doctor.specialtyName}</td>
                             <td>{doctor.availability}</td>
                             <td>
-                                <button className="btn btn-dark btn-lg mx-3 my-3">Update</button>
+                                <button onClick={()=>setdoctorCurrentlyBeingUpdated(doctor)} className="btn btn-dark btn-lg mx-3 my-3">Update</button>
                                 <button className="btn btn-secondary btn-lg">Delete</button>
                             </td>
                         </tr>
@@ -122,5 +125,28 @@ export default function IndexDoctors(){
         }
         alert(`Doctor "${createdDoctor.doctorname}" successfully Registered`)
         getDoctors();
+    }
+
+    function onDoctorUpdated(updatedDoctor){
+        setdoctorCurrentlyBeingUpdated(null);
+        if(updatedDoctor === null){
+            return;
+        }
+
+        let doctorsCopy = [...doctors];
+
+        const index = doctorsCopy.findIndex((doctorsCopyDoctor,currentIndex)=> {
+            if(doctorsCopyDoctor.doctorId === updatedDoctor.doctorId)
+            {
+                return true;
+            }
+        });
+        if(index !== -1){
+            doctorsCopy[index] = updatedDoctor;
+        }
+        setDoctors(doctorsCopy);
+        alert(`Doctor Successfully Updated.After clicking OK look for the Doctor with name "${updatedDoctor.doctorName}" in the table below to see the updates`);
+
+
     }
 }
