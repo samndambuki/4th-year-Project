@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import Constants from "../../utilities/Constants";
 import DoctorCreateForm from "../../components/DoctorCreateForm";
-import DoctorUpdateForm from "../../components/DoctorCreateForm";
+import DoctorUpdateForm from "../../components/DoctorUpdateForm";
 
 export default function IndexDoctors(){
 

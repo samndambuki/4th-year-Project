@@ -5,11 +5,11 @@ import Constants from "../utilities/Constants";
 export default function DoctorUpdateForm(props){
 
     const initialFormData = Object.freeze({
-        doctorname:props.doctor.doctorname,
+        doctorname:props.doctor.doctorName,
         email:props.doctor.email,
-        phonenumber:props.doctor.phonenumber,
-        specialtyid:props.doctor.specialtyid,
-        specialtyname:props.doctor.specialtyname,
+        phonenumber:props.doctor.phoneNumber,
+        specialtyid:props.doctor.specialtyId,
+        specialtyname:props.doctor.specialtyName,
         availability:props.doctor.availability
 });
     const [formData,setFormData] = useState(initialFormData);
@@ -27,11 +27,11 @@ const handleSubmit = (e) =>{
 
     const doctorToUpdate = {
         doctorId :props.doctor.doctorId,
-        doctorname:formData.doctorname,
+        doctorName:formData.doctorname,
         email:formData.email,
-        phonenumber:formData.phonenumber,
-        specialtyid:formData.specialtyid,
-        specialtyname:formData.specialtyname,
+        phoneNumber:formData.phonenumber,
+        specialtyId:formData.specialtyid,
+        specialtyName:formData.specialtyname,
         availability:formData.availability
     };
 
@@ -60,7 +60,7 @@ const handleSubmit = (e) =>{
       return(
             <form className="w-100 px-5">
                 <h1 className="mt-5">
-                    Updating the doctor "{props.doctor.doctorname}"
+                    Updating the doctor "{props.doctor.doctorName}"
                 </h1>
                 <div className="mt-5">
                     <label className="h3 form-label">Doctor's Name</label>
