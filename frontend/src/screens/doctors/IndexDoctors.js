@@ -26,6 +26,22 @@ export default function IndexDoctors(){
 
     }
 
+    function deleteDoctor(doctorId){
+        const url = `${Constants.API_URL_DELETE_DOCTOR_BY_ID}`
+        fetch(url,{
+            method:'DELETE'
+    })
+        .then(response=>response.json())
+        .then(responseFromServer => {
+            console.log(responseFromServer);
+            onDoctorDeleted(doctorId);
+        })
+        .catch((error)=>{
+            console.log(error);
+            alert(error);
+        });
+    }
+
     return (
         <div className="container">
             <div className="row-min-vh-100">
@@ -105,7 +121,8 @@ export default function IndexDoctors(){
                             <td>{doctor.availability}</td>
                             <td>
                                 <button onClick={()=>setdoctorCurrentlyBeingUpdated(doctor)} className="btn btn-dark btn-lg mx-3 my-3">Update</button>
-                                <button className="btn btn-secondary btn-lg">Delete</button>
+                                <button onClick={()=>{if(window.confirm(`Are you sure you wnat to delete the doctor named"${doctor.doctorName}"?`)) 
+                            deleteDoctor(doctor.doctorId)}} className="btn btn-secondary btn-lg">Delete</button>
                             </td>
                         </tr>
                         ))}
@@ -149,4 +166,22 @@ export default function IndexDoctors(){
 
 
     }
+
+    function onDoctorDeleted(deletedDoctorDoctorId){
+        let doctorsCopy = [...doctors];
+
+        const index = doctorsCopy.findIndex((doctorsCopyDoctor,currentIndex)=> {
+            if(doctorsCopyDoctor.doctorId === deletedDoctorDoctorId)
+            {
+                return true;
+            }
+        });
+        if(index !== -1){
+            doctorsCopy.splice(index,1);
+        }
+        setDoctors(doctorsCopy);
+        alert('Doctor Sucessfully Deleted.');
+    }
+
+
 }
