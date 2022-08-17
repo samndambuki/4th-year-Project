@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./screens/Home/Home";
 import IndexDoctors from "./screens/doctors/IndexDoctors";
 import { BrowserRouter as Router,Routes, Route, BrowserRouter } from "react-router-dom";
+import IndexPatients from "./screens/patients/IndexPatients";
 
 export default function App(){
  return(
@@ -14,11 +15,11 @@ export default function App(){
     <Route path="home" 
     element={<Home/>}
     />
-    <Route path="navigation" 
-    element={<Navigation/>}
-    />
     <Route path="doctor" 
     element={<IndexDoctors/>}
+    />   
+    <Route path="patient" 
+    element={<IndexPatients/>}
     />   
   </Routes>
   </BrowserRouter>

@@ -27,12 +27,13 @@ export default function IndexDoctors(){
     }
 
     function deleteDoctor(doctorId){
-        const url = `${Constants.API_URL_DELETE_DOCTOR_BY_ID}`
+        const url = Constants.API_URL_DELETE_DOCTOR_BY_ID;
+
         fetch(url,{
-            method:'DELETE'
+            method:"DELETE",
     })
-        .then(response=>response.json())
-        .then(responseFromServer => {
+        .then((response) => response.json())
+        .then((responseFromServer) => {
             console.log(responseFromServer);
             onDoctorDeleted(doctorId);
         })

@@ -2,15 +2,15 @@ import React,{useState} from "react"
 import Constants from "../utilities/Constants";
 
 
-export default function DoctorUpdateForm(props){
+export default function DoctorCreateForm(props){
 
     const initialFormData = Object.freeze({
-        doctorname:props.doctor.doctorName,
-        email:props.doctor.email,
-        phonenumber:props.doctor.phoneNumber,
-        specialtyid:props.doctor.specialtyId,
-        specialtyname:props.doctor.specialtyName,
-        availability:props.doctor.availability
+        patientname:"Enter Patient's Name",
+        email:"Enter Patient's Email",
+        phonenumber:"Enter Patient's PhoneNumber",
+        password:"Enter Patient's Password",
+        gender:"Enter Patient's Gender",
+        location:"Enter Patient's Location"
 });
     const [formData,setFormData] = useState(initialFormData);
 
@@ -25,27 +25,27 @@ const handleChange =(e) =>{
 const handleSubmit = (e) =>{
     e.preventDefault();
 
-    const doctorToUpdate = {
-        doctorId :props.doctor.doctorId,
-        doctorName:formData.doctorname,
+    const patientToCreate = {
+        patientId :0,
+        patientname:formData.doctorname,
         email:formData.email,
-        phoneNumber:formData.phonenumber,
-        specialtyId:formData.specialtyid,
-        specialtyName:formData.specialtyname,
-        availability:formData.availability
+        phonenumber:formData.phonenumber,
+        password:formData.password,
+        gender:formData.gender,
+        location:formData.location,
     };
 
-    const url = Constants.API_URL_UPDATE_DOCTOR;
+    const url = Constants.API_URL_CREATE_PATIENT;
 
     fetch(url,{
-        method:'PUT',
+        method:'POST',
         headers:{
             'Content-Type' : 'application/json'
         },
-        body:JSON.stringify(doctorToUpdate)
+        body:JSON.stringify(patientToCreate)
 })
-    .then((response)=>response.json())
-    .then((responseFromServer) => {
+    .then(response=>response.json())
+    .then(responseFromServer => {
         console.log(responseFromServer);
     })
     .catch((error)=>{
@@ -53,48 +53,48 @@ const handleSubmit = (e) =>{
         alert(error);
     });
 
-    props.onDoctorUpdated(doctorToUpdate);
+    props.onPatientCreated(patientToCreate);
 
 };
 
       return(
             <form className="w-100 px-5">
                 <h1 className="mt-5">
-                    Updating the doctor "{props.doctor.doctorName}"
+                    Register new Patient
                 </h1>
                 <div className="mt-5">
-                    <label className="h3 form-label">Doctor's Name</label>
-                    <input value={formData.doctorname} name="doctorname" type="text" className="form-control"
+                    <label className="h3 form-label">Patient's Name</label>
+                    <input value={formData.patientname} name="patientname" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Email</label>
+                    <label className="h3 form-label">Patient's Email</label>
                     <input value={formData.email} name="email" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's PhoneNumber</label>
+                    <label className="h3 form-label">Patient's PhoneNumber</label>
                     <input value={formData.phonenumber} name="phonenumber" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Specialty Id</label>
-                    <input value={formData.specialtyid} name="specialtyid" type="text" className="form-control"
+                    <label className="h3 form-label">Patient's Password</label>
+                    <input value={formData.password} name="password" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Specialty Name</label>
-                    <input value={formData.specialtyname} name="specialtyname" type="text" className="form-control"
+                    <label className="h3 form-label">Patient's Gender</label>
+                    <input value={formData.gender} name="gender" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Availability</label>
-                    <input value={formData.availability} name="availability" type="text" className="form-control"
+                    <label className="h3 form-label">Patient's Location</label>
+                    <input value={formData.location} name="location" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
@@ -102,7 +102,7 @@ const handleSubmit = (e) =>{
                     Submit
                 </button>
 
-                <button onClick={()=>(props.onDoctorUpdated(null))} className="btn btn-secondary btn-lg w-100 mt-3">
+                <button onClick={()=>(props.onDoctorCreated(null))} className="btn btn-secondary btn-lg w-100 mt-3">
                     Cancel
                 </button>
 

@@ -2,15 +2,15 @@ import React,{useState} from "react"
 import Constants from "../utilities/Constants";
 
 
-export default function DoctorUpdateForm(props){
+export default function PatientUpdateForm(props){
 
     const initialFormData = Object.freeze({
-        doctorname:props.doctor.doctorName,
-        email:props.doctor.email,
-        phonenumber:props.doctor.phoneNumber,
-        specialtyid:props.doctor.specialtyId,
-        specialtyname:props.doctor.specialtyName,
-        availability:props.doctor.availability
+        patientname:props.patient.patientName,
+        email:props.patient.email,
+        phonenumber:props.patient.phoneNumber,
+        password:props.patient.password,
+        gender:props.patinet.gender,
+        location:props.patient.location
 });
     const [formData,setFormData] = useState(initialFormData);
 
@@ -25,24 +25,24 @@ const handleChange =(e) =>{
 const handleSubmit = (e) =>{
     e.preventDefault();
 
-    const doctorToUpdate = {
-        doctorId :props.doctor.doctorId,
-        doctorName:formData.doctorname,
+    const patientToUpdate = {
+        patientId :props.patient.patientId,
+        patientName:formData.patientname,
         email:formData.email,
         phoneNumber:formData.phonenumber,
-        specialtyId:formData.specialtyid,
-        specialtyName:formData.specialtyname,
-        availability:formData.availability
+        password:formData.password,
+        gender:formData.gender,
+        location:formData.location
     };
 
-    const url = Constants.API_URL_UPDATE_DOCTOR;
+    const url = Constants.API_URL_UPDATE_PATIENT;
 
     fetch(url,{
         method:'PUT',
         headers:{
             'Content-Type' : 'application/json'
         },
-        body:JSON.stringify(doctorToUpdate)
+        body:JSON.stringify(patientToUpdate)
 })
     .then((response)=>response.json())
     .then((responseFromServer) => {
@@ -53,48 +53,48 @@ const handleSubmit = (e) =>{
         alert(error);
     });
 
-    props.onDoctorUpdated(doctorToUpdate);
+    props.onPatientUpdated(patientToUpdate);
 
 };
 
       return(
             <form className="w-100 px-5">
                 <h1 className="mt-5">
-                    Updating the doctor "{props.doctor.doctorName}"
+                    Updating the patient "{props.patient.patientName}"
                 </h1>
                 <div className="mt-5">
-                    <label className="h3 form-label">Doctor's Name</label>
-                    <input value={formData.doctorname} name="doctorname" type="text" className="form-control"
+                    <label className="h3 form-label">Patient's Name</label>
+                    <input value={formData.patientname} name="patientname" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Email</label>
+                    <label className="h3 form-label">Patient's Email</label>
                     <input value={formData.email} name="email" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's PhoneNumber</label>
+                    <label className="h3 form-label">Patient's Password</label>
+                    <input value={formData.password} name="password" type="text" className="form-control"
+                    onChange={handleChange}/>                    
+                </div>
+
+                <div className="mt-4">
+                    <label className="h3 form-label">Patient's PhoneNumber</label>
                     <input value={formData.phonenumber} name="phonenumber" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Specialty Id</label>
-                    <input value={formData.specialtyid} name="specialtyid" type="text" className="form-control"
+                    <label className="h3 form-label">Patient's gender</label>
+                    <input value={formData.gender} name="gender" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Specialty Name</label>
-                    <input value={formData.specialtyname} name="specialtyname" type="text" className="form-control"
-                    onChange={handleChange}/>                    
-                </div>
-
-                <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Availability</label>
-                    <input value={formData.availability} name="availability" type="text" className="form-control"
+                    <label className="h3 form-label">Patient's Location</label>
+                    <input value={formData.location} name="location" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
@@ -102,7 +102,7 @@ const handleSubmit = (e) =>{
                     Submit
                 </button>
 
-                <button onClick={()=>(props.onDoctorUpdated(null))} className="btn btn-secondary btn-lg w-100 mt-3">
+                <button onClick={()=>(props.onPatientUpdated(null))} className="btn btn-secondary btn-lg w-100 mt-3">
                     Cancel
                 </button>
 
