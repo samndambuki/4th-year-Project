@@ -181,3 +181,9 @@ C:/Users/SAM/projects/4th-year-Project/backend/obj/Debug/net6.0/ref/backend.dll
 /home/sam/Desktop/4th-year-Project/backend/obj/Debug/net6.0/backend.pdb
 /home/sam/Desktop/4th-year-Project/backend/obj/Debug/net6.0/backend.genruntimeconfig.cache
 /home/sam/Desktop/4th-year-Project/backend/obj/Debug/net6.0/ref/backend.dll
+/home/sam/Desktop/4th-year-Project/backend/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/home/sam/Desktop/4th-year-Project/backend/bin/Debug/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/home/sam/Desktop/4th-year-Project/backend/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/sam/Desktop/4th-year-Project/backend/bin/Debug/net6.0/Microsoft.Extensions.Identity.Core.dll
+/home/sam/Desktop/4th-year-Project/backend/bin/Debug/net6.0/Microsoft.Extensions.Identity.Stores.dll
+/home/sam/Desktop/4th-year-Project/backend/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
