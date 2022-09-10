@@ -2,6 +2,7 @@ using applicationusers.models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using register.ViewModels;
+using databaseContext.Data;
 
 namespace authenticate.Controllers{
     [Route("api/[Controller]")]

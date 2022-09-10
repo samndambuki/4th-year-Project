@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using patient.Models;
 
 namespace doctor.Models{
  public class Doctor{

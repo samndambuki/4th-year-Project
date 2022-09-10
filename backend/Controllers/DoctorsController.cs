@@ -1,6 +1,7 @@
 using doctor.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using databaseContext.Data;
 
 namespace Doctors.Controllers{
  [Route("api/[Controller]")]
