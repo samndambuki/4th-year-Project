@@ -3,14 +3,15 @@ using doctor.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using patient.Models;
+using refresh.Models;
 using schedule.Models;
 using specialty.Models;
-
 
 namespace databaseContext.Data{
 public class ehealthdbcontext:IdentityDbContext<ApplicationUser>
 {
 public ehealthdbcontext(DbContextOptions<ehealthdbcontext> options ) : base(options) {}
+public DbSet<RefreshToken> RefreshTokens { get; set; }
  public DbSet<Doctor>DoctorsData {get;set;} 
  public DbSet<Patient>PatientsData {get;set;}
  public DbSet<Schedule>SchedulesData {get;set;}
