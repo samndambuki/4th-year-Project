@@ -10,7 +10,6 @@ namespace doctor.Models{
   public string PhoneNumber { get; set; } = string.Empty;
   public int specialtyId { get; set; } 
   public string  SpecialtyName { get; set; } = string.Empty;
-  public DateTime  Availability { get; set; }
-
+  public string facility { get; set; } = string.Empty;
  }
 }

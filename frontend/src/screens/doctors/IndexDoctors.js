@@ -1,15 +1,13 @@
 import React,{useState} from "react";
 import Constants from "../../utilities/Constants";
 import DoctorCreateForm from "../../components/DoctorCreateForm";
-import DoctorUpdateForm from "../../components/DoctorUpdateForm";
 
 export default function IndexDoctors(){
 
     const[doctors,setDoctors] = useState([]);
+    const[patients,setPatients] = useState([]);
     const[showingCreateNewDoctorForm,setshowingCreateNewDoctorForm] = useState(false);
-    const[doctorCurrentlyBeingUpdated,setdoctorCurrentlyBeingUpdated] = useState(null);
-
-
+    
     function getDoctors(){
         const url = Constants.API_URL_GET_ALL_DOCTORS;
         fetch(url,{
@@ -23,19 +21,16 @@ export default function IndexDoctors(){
             console.log(error);
             alert(error);
         });
-
     }
 
-    function deleteDoctor(doctorId){
-        const url = Constants.API_URL_DELETE_DOCTOR_BY_ID;
-
+    function getPatients(){
+        const url = Constants.API_URL_GET_ALL_PATIENTS;
         fetch(url,{
-            method:"DELETE",
+            method:'GET'
     })
-        .then((response) => response.json())
-        .then((responseFromServer) => {
-            console.log(responseFromServer);
-            onDoctorDeleted(doctorId);
+        .then(response=>response.json())
+        .then(patientsFromServer => {
+            setPatients(patientsFromServer);
         })
         .catch((error)=>{
             console.log(error);
@@ -47,27 +42,92 @@ export default function IndexDoctors(){
         <div className="container">
             <div className="row-min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
-                    {(showingCreateNewDoctorForm === false && doctorCurrentlyBeingUpdated === null) && (
+                    {(showingCreateNewDoctorForm === false) && (
                         <div>
                         <h1>Doctors Registration</h1>
+
                         <div className="mt-5">
+
                             <button onClick={getDoctors} className="btn btn-dark btn-lg w-100">
                                 Get Doctors From Server
                             </button>
+
                             <button onClick={() => setshowingCreateNewDoctorForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
                                 Register new Doctor
                             </button>
+
+                            <button onClick={getPatients} className="btn btn-secondary btn-lg w-100 mt-4">
+                                Get Patients From Server
+                            </button>
+
                         </div>
                         </div>
                     )} 
-                    
-                    {(doctors.length>0 && showingCreateNewDoctorForm === false && doctorCurrentlyBeingUpdated === null) && renderDoctorsTable()}
+
+                {(patients.length>0) && renderPatientsTable()}
+                    {(doctors.length>0) && renderDoctorsTable()}
                     {showingCreateNewDoctorForm && <DoctorCreateForm onDoctorCreated={onDoctorCreated}/>}
-                    {doctorCurrentlyBeingUpdated !== null && <DoctorUpdateForm doctor={doctorCurrentlyBeingUpdated} onDoctorUpdated={onDoctorUpdated}/>}
                 </div>
             </div>
             </div>
     );
+
+    function renderPatientsTable(){
+        return(
+            <div className="table-responsive mt-5">
+                <table className="table table-bordered border-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                PatientId(PK)
+                            </th>
+        
+                            <th scope="col">
+                                PatientName
+                            </th>
+                        
+                            <th scope="col">
+                                Email
+                            </th>
+
+                            <th scope="col">
+                                Password
+                            </th>
+                       
+                            <th scope="col">
+                                PhoneNumber
+                            </th>
+                        
+                            <th scope="col">
+                                Gender
+                            </th>
+                      
+                            <th scope="col">
+                              Location
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {patients.map((patient)=>(
+                            <tr key={patient.patientId}>
+                            <th scope="row">{patient.patientId}</th>
+                            <td>{patient.patientName}</td>
+                            <td>{patient.email}</td>
+                            <td>{patient.phoneNumber}</td>
+                            <td>{patient.password}</td>
+                            <td>{patient.gender}</td>
+                            <td>{patient.location}</td>
+                        </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <button onClick={() => setPatients([])} className="btn btn-dark btn-lg w-100">
+                    Empty Patients Table
+                </button>
+            </div>
+        );
+    }
+
 
 
     function renderDoctorsTable(){
@@ -103,12 +163,7 @@ export default function IndexDoctors(){
                             <th scope="col">
                                 Availability
                             </th>
-                       
-                            <th scope="col">
-                                CRUD OPERATIONS
-                            </th>
                         </tr>
-
                     </thead>
                     <tbody>
                         {doctors.map((doctor)=>(
@@ -120,11 +175,6 @@ export default function IndexDoctors(){
                             <td>{doctor.specialtyId}</td>
                             <td>{doctor.specialtyName}</td>
                             <td>{doctor.availability}</td>
-                            <td>
-                                <button onClick={()=>setdoctorCurrentlyBeingUpdated(doctor)} className="btn btn-dark btn-lg mx-3 my-3">Update</button>
-                                <button onClick={()=>{if(window.confirm(`Are you sure you wnat to delete the doctor named"${doctor.doctorName}"?`)) 
-                            deleteDoctor(doctor.doctorId)}} className="btn btn-secondary btn-lg">Delete</button>
-                            </td>
                         </tr>
                         ))}
                     </tbody>
@@ -144,45 +194,4 @@ export default function IndexDoctors(){
         alert(`Doctor "${createdDoctor.doctorname}" successfully Registered`)
         getDoctors();
     }
-
-    function onDoctorUpdated(updatedDoctor){
-        setdoctorCurrentlyBeingUpdated(null);
-        if(updatedDoctor === null){
-            return;
-        }
-
-        let doctorsCopy = [...doctors];
-
-        const index = doctorsCopy.findIndex((doctorsCopyDoctor,currentIndex)=> {
-            if(doctorsCopyDoctor.doctorId === updatedDoctor.doctorId)
-            {
-                return true;
-            }
-        });
-        if(index !== -1){
-            doctorsCopy[index] = updatedDoctor;
-        }
-        setDoctors(doctorsCopy);
-        alert(`Doctor Successfully Updated.After clicking OK look for the Doctor with name "${updatedDoctor.doctorName}" in the table below to see the updates`);
-
-
-    }
-
-    function onDoctorDeleted(deletedDoctorDoctorId){
-        let doctorsCopy = [...doctors];
-
-        const index = doctorsCopy.findIndex((doctorsCopyDoctor,currentIndex)=> {
-            if(doctorsCopyDoctor.doctorId === deletedDoctorDoctorId)
-            {
-                return true;
-            }
-        });
-        if(index !== -1){
-            doctorsCopy.splice(index,1);
-        }
-        setDoctors(doctorsCopy);
-        alert('Doctor Sucessfully Deleted.');
-    }
-
-
 }

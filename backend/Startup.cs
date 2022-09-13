@@ -55,6 +55,20 @@ namespace SchoolApp.API
 
             services.AddSingleton(tokenValidationParameters);
 
+            services.AddCors();
+
+            services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000", "http://192.168.43.44:3000")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
+
+
             //Add Identity
             services.AddIdentity<ApplicationUser,IdentityRole>()
             .AddEntityFrameworkStores<ehealthdbcontext>()
@@ -89,6 +103,15 @@ namespace SchoolApp.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "E-Health Consulation Site v1"));
             }
+
+            // Shows UseCors with CorsPolicyBuilder.
+app.UseCors(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
             app.UseHttpsRedirection();
 
