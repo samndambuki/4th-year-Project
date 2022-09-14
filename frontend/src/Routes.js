@@ -3,20 +3,13 @@ import "./App.css";
 import IndexDoctors from "./screens/doctors/IndexDoctors";
 import { BrowserRouter as Router,Route,Routes,BrowserRouter } from "react-router-dom";
 import IndexPatients from "./screens/patients/IndexPatients";
-import { LogInPage } from "./screens/login/LogInPage";
-import { SignUpPage } from "./screens/signup/SignUpPage";
-import { PrivateRoute } from "./auth/PrivateRoute";
+import IndexSpecialties from "./screens/specialties/IndexSpecialties";
+import IndexSchedules from "./screens/schedules/IndexSchedules";
 
 export const Routing = () => {
  return(
   <BrowserRouter>
     <Routes>
-    <Route path="/login"
-    element={<LogInPage/>}
-    />
-     <Route path="/signup"
-    element={<SignUpPage/>}
-    />
     <Route path="/" 
     element={<Navigation/>}
     />
@@ -26,6 +19,12 @@ export const Routing = () => {
     <Route path="/patient" 
     element={<IndexPatients/>}
     />   
+    <Route path="/specialties" 
+    element={<IndexSpecialties/>}
+    /> 
+     <Route path="/schedules" 
+    element={<IndexSchedules/>}
+    /> 
      </Routes>
   </BrowserRouter>
  );

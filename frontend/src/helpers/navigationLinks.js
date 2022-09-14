@@ -1,18 +1,18 @@
 export const navigationLinks = [
  {
-  name:"PATIENT",
+  name:"PATIENTS",
   ref:"patient"
  },
  {
-  name:"DOCTOR",
+  name:"DOCTORS",
   ref:"doctor"
  },
  {
-    name:"DOCTOR's SCHEDULES",
+    name:"SCHEDULES",
     ref:"schedules"
 },
 {
-    name:"DOCTOR's SPECIALTIES",
+    name:"SPECIALTIES",
     ref:"specialties"
 },
 ]

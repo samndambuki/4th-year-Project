@@ -1,12 +1,16 @@
 import React,{useState} from "react";
 import Constants from "../../utilities/Constants";
 import DoctorCreateForm from "../../components/DoctorCreateForm";
+import SpecialtyCreateForm from "../../components/SpecialtyCreateForm";
+import ScheduleCreateForm from "../../components/ScheduleCreateForm";
 
 export default function IndexDoctors(){
 
     const[doctors,setDoctors] = useState([]);
     const[patients,setPatients] = useState([]);
     const[showingCreateNewDoctorForm,setshowingCreateNewDoctorForm] = useState(false);
+    const[showingCreateNewSpecialtyForm,setshowingCreateNewSpecialtyForm] = useState(false);
+    const[showingCreateNewScheduleForm,setshowingCreateNewScheduleForm] = useState(false);
     
     function getDoctors(){
         const url = Constants.API_URL_GET_ALL_DOCTORS;
@@ -42,7 +46,9 @@ export default function IndexDoctors(){
         <div className="container">
             <div className="row-min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
-                    {(showingCreateNewDoctorForm === false) && (
+                    {(showingCreateNewDoctorForm === false) && (showingCreateNewSpecialtyForm === false) && 
+                    (showingCreateNewScheduleForm === false) &&
+                     (
                         <div>
                         <h1>Doctors Registration</h1>
 
@@ -56,6 +62,14 @@ export default function IndexDoctors(){
                                 Register new Doctor
                             </button>
 
+                            <button onClick={() => setshowingCreateNewSpecialtyForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
+                                Register new Specialty
+                            </button>
+
+                            <button onClick={() => setshowingCreateNewScheduleForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
+                                Register new Schedule
+                            </button>
+
                             <button onClick={getPatients} className="btn btn-secondary btn-lg w-100 mt-4">
                                 Get Patients From Server
                             </button>
@@ -67,6 +81,9 @@ export default function IndexDoctors(){
                 {(patients.length>0) && renderPatientsTable()}
                     {(doctors.length>0) && renderDoctorsTable()}
                     {showingCreateNewDoctorForm && <DoctorCreateForm onDoctorCreated={onDoctorCreated}/>}
+                    
+                    {showingCreateNewScheduleForm && <ScheduleCreateForm onScheduleCreated={onScheduleCreated}/>}
+                    {showingCreateNewSpecialtyForm && <SpecialtyCreateForm onSpecialtyCreated={onSpecialtyCreated}/>}
                 </div>
             </div>
             </div>
@@ -192,6 +209,22 @@ export default function IndexDoctors(){
             return;
         }
         alert(`Doctor "${createdDoctor.doctorname}" successfully Registered`)
-        getDoctors();
+    }
+
+    function onScheduleCreated(createdSchedule){
+        setshowingCreateNewScheduleForm(false);
+        if(createdSchedule === null){
+            return;
+        }
+        alert(`Schedule "${createdSchedule.availability}" successfully Created`)
+    }
+
+
+    function onSpecialtyCreated(createdSpecialty){
+        setshowingCreateNewSpecialtyForm(false);
+        if(createdSpecialty === null){
+            return;
+        }
+        alert(`Specialty "${createdSpecialty.specialtyName}" successfully Registered`)
     }
 }

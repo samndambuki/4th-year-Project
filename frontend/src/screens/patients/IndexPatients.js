@@ -18,6 +18,7 @@ export default function IndexPatients(){
                             <button onClick={() => setshowingCreateNewPatientForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
                                 Register new Patient
                             </button>
+                            
                         </div>
                         </div>
                     )} 
