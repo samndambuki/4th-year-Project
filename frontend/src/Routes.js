@@ -10,7 +10,7 @@ export const Routing = () => {
  return(
   <BrowserRouter>
     <Routes>
-    <Route path="/" 
+    <Route path="/home" 
     element={<Navigation/>}
     />
     <Route path="/doctor" 

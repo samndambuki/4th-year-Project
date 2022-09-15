@@ -1,5 +1,5 @@
 .page-container {
-    display: flex;
+    display: grid;
     background-color: #ddd;
     min-height: 100vh;
     min-width: 100%;
