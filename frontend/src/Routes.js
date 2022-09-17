@@ -5,11 +5,19 @@ import { BrowserRouter as Router,Route,Routes,BrowserRouter } from "react-router
 import IndexPatients from "./screens/patients/IndexPatients";
 import IndexSpecialties from "./screens/specialties/IndexSpecialties";
 import IndexSchedules from "./screens/schedules/IndexSchedules";
+import Register from "./auth/Register";
+import Login from "./auth/Login";
 
 export const Routing = () => {
  return(
   <BrowserRouter>
     <Routes>
+    <Route path="/register" 
+    element={<Register/>}
+    />
+    <Route path="/login" 
+    element={<Login/>}
+    />
     <Route path="/home" 
     element={<Navigation/>}
     />

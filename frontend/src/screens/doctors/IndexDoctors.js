@@ -3,6 +3,7 @@ import Constants from "../../utilities/Constants";
 import DoctorCreateForm from "../../components/DoctorCreateForm";
 import SpecialtyCreateForm from "../../components/SpecialtyCreateForm";
 import ScheduleCreateForm from "../../components/ScheduleCreateForm";
+import Authorized from "../../auth/Authorized";
 
 export default function IndexDoctors(){
 
@@ -47,6 +48,13 @@ export default function IndexDoctors(){
         <div className="container">
             <div className="row-min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
+
+                    <Authorized
+                    role="doctor"
+
+                    authorized={
+                        <>
+
                     {(showingCreateNewDoctorForm === false) && (showingCreateNewSpecialtyForm === false) && 
                     (showingCreateNewScheduleForm === false) &&
                      (
@@ -85,7 +93,12 @@ export default function IndexDoctors(){
                     {showingCreateNewDoctorForm && <DoctorCreateForm onDoctorCreated={onDoctorCreated}/>}
                     
                     {showingCreateNewScheduleForm && <ScheduleCreateForm onScheduleCreated={onScheduleCreated}/>}
-                    {showingCreateNewSpecialtyForm && <SpecialtyCreateForm onSpecialtyCreated={onSpecialtyCreated}/>}
+                    {showingCreateNewSpecialtyForm && <SpecialtyCreateForm onSpecialtyCreated={onSpecialtyCreated}/>}  
+                        </>
+                    }
+
+                    />
+
                 </div>
             </div>
             </div>

@@ -15,4 +15,12 @@ export const navigationLinks = [
     name:"SPECIALTIES",
     ref:"specialties"
 },
+{
+    name:"REGISTER",
+    ref:"register"
+},
+{
+    name:"LOGIN",
+    ref:"login"
+},
 ]

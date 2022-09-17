@@ -1,6 +1,9 @@
 .navigation_container {
     background-color: var(--nav-color);
     color: white;
+    display: flex;
+    justify-content: space-between;
+
   }
   
   .navbar-light .navbar-nav .nav-link {
