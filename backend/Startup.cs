@@ -1,4 +1,3 @@
-using applicationusers.models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +42,7 @@ namespace SchoolApp.API
             var tokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:Secret"])),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"])),
                     ValidateIssuer = true,
                     ValidIssuer = Configuration["JWT:Issuer"],
 
@@ -70,9 +69,11 @@ namespace SchoolApp.API
 
 
             //Add Identity
-            services.AddIdentity<ApplicationUser,IdentityRole>()
+            services.AddIdentity<IdentityUser,IdentityRole>()
             .AddEntityFrameworkStores<ehealthdbcontext>()
             .AddDefaultTokenProviders();
+
+
             //Add Authentication
             services.AddAuthentication(options=>
             {
@@ -80,8 +81,8 @@ namespace SchoolApp.API
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).
-            //Add JWT Bearer
 
+            //Add JWT Bearer
             AddJwtBearer(options => {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
