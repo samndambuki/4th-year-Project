@@ -8,9 +8,9 @@ export default function DoctorCreateForm(props){
         doctorname:"Enter Doctor's Name",
         email:"Enter Doctor's Email",
         phonenumber:"Enter Doctor's PhoneNumber",
-        specialtyid:"Enter Doctor's SpecialtyId",
-        specialtyname:"Enter Doctor's SpecialtyName",
-        availability:"Enter Doctor's Availability"
+        gender:"Enter Doctor's Gender",
+        facility:"Enter Doctor's Facility",
+        facilitylocation:"Enter Facility's Location"
 });
     const [formData,setFormData] = useState(initialFormData);
 
@@ -30,9 +30,9 @@ const handleSubmit = (e) =>{
         doctorname:formData.doctorname,
         email:formData.email,
         phonenumber:formData.phonenumber,
-        specialtyid:formData.specialtyid,
-        specialtyname:formData.specialtyname,
-        availability:formData.availability
+        gender:formData.gender,
+        facility:formData.facility,
+        facilitylocation:formData.facilitylocation
     };
 
     const url = Constants.API_URL_CREATE_DOCTOR;
@@ -60,7 +60,7 @@ const handleSubmit = (e) =>{
       return(
             <form className="w-100 px-5">
                 <h1 className="mt-5">
-                    Register new Doctor
+                    Register Doctor To Offer Services
                 </h1>
                 <div className="mt-5">
                     <label className="h3 form-label">Doctor's Name</label>
@@ -81,20 +81,20 @@ const handleSubmit = (e) =>{
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Specialty Id</label>
-                    <input value={formData.specialtyid} name="specialtyid" type="text" className="form-control"
+                    <label className="h3 form-label">Doctor's Gender</label>
+                    <input value={formData.gender} name="gender" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Specialty Name</label>
-                    <input value={formData.specialtyname} name="specialtyname" type="text" className="form-control"
+                    <label className="h3 form-label">Doctor's Facility</label>
+                    <input value={formData.facility} name="facility" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 
                 <div className="mt-4">
-                    <label className="h3 form-label">Doctor's Availability</label>
-                    <input value={formData.availability} name="availability" type="text" className="form-control"
+                    <label className="h3 form-label">Facility Location</label>
+                    <input value={formData.facilitylocation} name="facilitylocation" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 

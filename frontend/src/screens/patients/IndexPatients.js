@@ -11,12 +11,12 @@ export default function IndexPatients(){
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
                     {(showingCreateNewPatientForm === false) && (
                         <div>
-                        <h1>Patient's Registration</h1>
+                        <h1>Patients Page</h1>
 
                         <div className="mt-5">
                             
                             <button onClick={() => setshowingCreateNewPatientForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
-                                Register new Patient
+                                Register for Consulation
                             </button>
                             
                         </div>

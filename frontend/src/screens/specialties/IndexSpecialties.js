@@ -26,12 +26,12 @@ export default function IndexSpecialties(){
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
                     { (
                         <div>
-                        <h1>Specialty Registration</h1>
+                        <h1>Specialties Page</h1>
 
                         <div className="mt-5">
                             
                             <button onClick={getSpecialties} className="btn btn-secondary btn-lg w-100 mt-4">
-                                Get Specialties From Server
+                             Get Specialties Report
                             </button>
 
                         </div>
@@ -53,33 +53,29 @@ export default function IndexSpecialties(){
                             <th scope="col">
                                 SpecialtyId(PK)
                             </th>
+
+                            <th scope="col">
+                                Doctor Name
+                            </th>
         
                             <th scope="col">
                               Specialty Name
                             </th>
                         
-                            <th scope="col">
-                              Doctor Id
-                            </th>
-
-                            <th scope="col">
-                                Doctor Name
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         {specialties.map((specialty)=>(
                             <tr key={specialty.specialtyId}>
                             <th scope="row">{specialty.specialtyId}</th>
-                            <td>{specialty.specialtyName}</td>
-                            <td>{specialty.doctorId}</td>
                             <td>{specialty.doctorName}</td>
+                            <td>{specialty.specialtyName}</td>
                         </tr>
                         ))}
                     </tbody>
                 </table>
                 <button onClick={() => setSpecialties([])} className="btn btn-dark btn-lg w-100">
-                    Empty Specialties Table
+                    Empty Specialties Report
                 </button>
             </div>
         );

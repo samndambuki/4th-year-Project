@@ -1,14 +1,20 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Constants from "../utilities/Constants";
 import DisplayErrors from "../utils/DisplayErrors";
 import { authentcationResponse, userCredentials } from "./auth.models";
+import AuthenticationContext from "./AuthenticationContext";
 import AuthForm from "./AuthForm";
+import { getClaims, saveToken } from "./handleJWT";
 
 export default function Register(){
 
     const url = Constants.API_URL_CREATE_ACCOUNT;
     const[errors,setErrors] = useState<string[]>([]);
+    const {update} = useContext(AuthenticationContext);
+    const navigate = useNavigate();
+    
 
 
     async function register(credentials:userCredentials){
@@ -16,7 +22,9 @@ export default function Register(){
             setErrors([]);
             const response = await axios
             .post<authentcationResponse>(url,credentials);
-            console.log(response.data);
+            saveToken(response.data);
+            update(getClaims());
+            navigate('/login');
         }
         catch( Error)
         {

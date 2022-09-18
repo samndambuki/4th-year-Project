@@ -26,12 +26,12 @@ export default function IndexSchedules(){
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
                     { (
                         <div>
-                        <h1>Schedule Registration</h1>
+                        <h1>Schedule Page</h1>
 
                         <div className="mt-5">
                             
                             <button onClick={getSchedules} className="btn btn-secondary btn-lg w-100 mt-4">
-                                Get Schedules From Server
+                                Get Schedules Report
                             </button>
 
                         </div>
@@ -79,16 +79,18 @@ export default function IndexSchedules(){
                     <tbody>
                         {schedules.map((schedule)=>(
                             <tr key={schedule.scheduleId}>
-                            <th scope="row">{schedule.doctorId}</th>
+                            <th scope="row">{schedule.scheduleId}</th>
+                            <td>{schedule.doctorId}</td>
                             <td>{schedule.doctorName}</td>
                             <td>{schedule.specialtyId}</td>
                             <td>{schedule.specialtyName}</td>
+                            <td>{schedule.availability}</td>
                         </tr>
                         ))}
                     </tbody>
                 </table>
                 <button onClick={() => setSchedules([])} className="btn btn-dark btn-lg w-100">
-                    Empty Specialties Table
+                    Empty Specialties Report
                 </button>
             </div>
         );

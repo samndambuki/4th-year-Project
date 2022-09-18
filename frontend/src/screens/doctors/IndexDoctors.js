@@ -49,39 +49,39 @@ export default function IndexDoctors(){
             <div className="row-min-vh-100">
                 <div className="col d-flex flex-column justify-content-center align-Items-center">
 
-                    <Authorized
+                    {/* <Authorized
                     role="doctor"
 
                     authorized={
-                        <>
+                        <> */}
 
                     {(showingCreateNewDoctorForm === false) && (showingCreateNewSpecialtyForm === false) && 
                     (showingCreateNewScheduleForm === false) &&
                      (
                         
                         <div>
-                        <h1>Doctors Registration</h1>
+                        <h1>Doctor's Page</h1>
 
                         <div className="mt-5">
 
                             <button onClick={getDoctors} className="btn btn-dark btn-lg w-100">
-                                Get Doctors From Server
+                                Get Doctors Report
                             </button>
 
                             <button onClick={() => setshowingCreateNewDoctorForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
-                                Register new Doctor
+                                Register Doctor For Service
                             </button>
 
                             <button onClick={() => setshowingCreateNewSpecialtyForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
-                                Register new Specialty
+                                Register Doctor's Specialty
                             </button>
 
                             <button onClick={() => setshowingCreateNewScheduleForm(true)} className="btn btn-secondary btn-lg w-100 mt-4">
-                                Register new Schedule
+                                Register Doctor's Schedule
                             </button>
 
                             <button onClick={getPatients} className="btn btn-secondary btn-lg w-100 mt-4">
-                                Get Patients From Server
+                                Get Patients Report
                             </button>
 
                         </div>
@@ -94,10 +94,10 @@ export default function IndexDoctors(){
                     
                     {showingCreateNewScheduleForm && <ScheduleCreateForm onScheduleCreated={onScheduleCreated}/>}
                     {showingCreateNewSpecialtyForm && <SpecialtyCreateForm onSpecialtyCreated={onSpecialtyCreated}/>}  
-                        </>
+                        {/* </>
                     }
 
-                    />
+                    /> */}
 
                 </div>
             </div>
@@ -123,10 +123,6 @@ export default function IndexDoctors(){
                             </th>
 
                             <th scope="col">
-                                Password
-                            </th>
-                       
-                            <th scope="col">
                                 PhoneNumber
                             </th>
                         
@@ -146,7 +142,6 @@ export default function IndexDoctors(){
                             <td>{patient.patientName}</td>
                             <td>{patient.email}</td>
                             <td>{patient.phoneNumber}</td>
-                            <td>{patient.password}</td>
                             <td>{patient.gender}</td>
                             <td>{patient.location}</td>
                         </tr>
@@ -154,7 +149,7 @@ export default function IndexDoctors(){
                     </tbody>
                 </table>
                 <button onClick={() => setPatients([])} className="btn btn-dark btn-lg w-100">
-                    Empty Patients Table
+                    Empty Patients Report
                 </button>
             </div>
         );
@@ -185,15 +180,15 @@ export default function IndexDoctors(){
                             </th>
                         
                             <th scope="col">
-                                SpecialtyId
+                                Gender
                             </th>
                       
                             <th scope="col">
-                                SpecialtyName
+                                Facility
                             </th>
                        
                             <th scope="col">
-                                Availability
+                                Facility Location
                             </th>
                         </tr>
                     </thead>
@@ -204,15 +199,15 @@ export default function IndexDoctors(){
                             <td>{doctor.doctorName}</td>
                             <td>{doctor.email}</td>
                             <td>{doctor.phoneNumber}</td>
-                            <td>{doctor.specialtyId}</td>
-                            <td>{doctor.specialtyName}</td>
-                            <td>{doctor.availability}</td>
+                            <td>{doctor.gender}</td>
+                            <td>{doctor.facility}</td>
+                            <td>{doctor.facilityLocation}</td>
                         </tr>
                         ))}
                     </tbody>
                 </table>
                 <button onClick={() => setDoctors([])} className="btn btn-dark btn-lg w-100">
-                    Empty Doctors Table
+                    Empty Doctors Report
                 </button>
             </div>
         );

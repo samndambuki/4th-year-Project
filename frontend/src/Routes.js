@@ -7,6 +7,7 @@ import IndexSpecialties from "./screens/specialties/IndexSpecialties";
 import IndexSchedules from "./screens/schedules/IndexSchedules";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
+import Authorized from "./auth/Authorized";
 
 export const Routing = () => {
  return(
@@ -33,6 +34,8 @@ export const Routing = () => {
      <Route path="/schedules" 
     element={<IndexSchedules/>}
     /> 
+
+
      </Routes>
   </BrowserRouter>
  );

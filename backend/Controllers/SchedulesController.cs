@@ -26,17 +26,17 @@ namespace Doctors.Controllers{
    return Ok(schedule);
   }
   [HttpPost]
-  public async Task<ActionResult<Schedule>> PostSchedele(Schedule schedule){
+  public async Task<ActionResult<Schedule>> PostSchedule(Schedule schedule){
    _context.SchedulesData.Add(schedule);
    await _context.SaveChangesAsync();
    return CreatedAtAction(
-    "GetDoctor",
+    "GetSchedule",
     new{id=schedule.scheduleId},
     schedule
    );
   }
   [HttpPut("{id}")]
-  public async Task<ActionResult> PutSshedule(int id,Schedule schedule){
+  public async Task<ActionResult> PutSchedule(int id,Schedule schedule){
    if(id!=schedule.scheduleId){
     return BadRequest();
    }

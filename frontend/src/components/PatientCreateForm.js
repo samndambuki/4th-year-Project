@@ -8,7 +8,6 @@ export default function DoctorCreateForm(props){
         patientname:"Enter Patient's Name",
         email:"Enter Patient's Email",
         phonenumber:"Enter Patient's PhoneNumber",
-        password:"Enter Patient's Password",
         gender:"Enter Patient's Gender",
         location:"Enter Patient's Location"
 });
@@ -27,10 +26,9 @@ const handleSubmit = (e) =>{
 
     const patientToCreate = {
         patientId :0,
-        patientname:formData.doctorname,
+        patientname:formData.patientname,
         email:formData.email,
         phonenumber:formData.phonenumber,
-        password:formData.password,
         gender:formData.gender,
         location:formData.location,
     };
@@ -60,7 +58,7 @@ const handleSubmit = (e) =>{
       return(
             <form className="w-100 px-5">
                 <h1 className="mt-5">
-                    Register new Patient
+                    Register For Consulation
                 </h1>
                 <div className="mt-5">
                     <label className="h3 form-label">Patient's Name</label>
@@ -77,12 +75,6 @@ const handleSubmit = (e) =>{
                 <div className="mt-4">
                     <label className="h3 form-label">Patient's PhoneNumber</label>
                     <input value={formData.phonenumber} name="phonenumber" type="text" className="form-control"
-                    onChange={handleChange}/>                    
-                </div>
-
-                <div className="mt-4">
-                    <label className="h3 form-label">Patient's Password</label>
-                    <input value={formData.password} name="password" type="text" className="form-control"
                     onChange={handleChange}/>                    
                 </div>
 

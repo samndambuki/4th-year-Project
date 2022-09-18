@@ -8,6 +8,6 @@ namespace schedule.Models{
   public string DoctorName{ get; set; } = string.Empty;
    public int specialtyId { get; set; }
   public string SpecialtyName { get; set; } = string.Empty;
-  public DateTime Availability { get; set; }
+  public string Availability { get; set; } = string.Empty;
  }
 }

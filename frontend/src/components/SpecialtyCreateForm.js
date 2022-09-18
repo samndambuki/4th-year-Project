@@ -5,7 +5,6 @@ export default function SpecialtyCreateForm(props) {
 
   const initialFormData = Object.freeze({
 
-    doctorId :"Input Doctor Id",
     doctorName: "Input Doctor Name",
     specialtyName: "Input Specialty Name",
   });
@@ -24,7 +23,6 @@ export default function SpecialtyCreateForm(props) {
 
     const specialtyToCreate = {
       specialtyId: 0,
-      doctorId:formData.doctorId,
       doctorName:formData.doctorName,
       specialtyName: formData.specialtyName
     };
@@ -52,17 +50,8 @@ export default function SpecialtyCreateForm(props) {
 
   return (
     <form className="w-100 px-5">
-      <h1 className="mt-5">Create new Specialty</h1>
-      <div className="mt-5">
-        <label className="h3 form-label">Doctor Id</label>
-        <input
-          value={formData.doctorId}
-          name="doctorId"
-          type="text"
-          className="form-control"
-          onChange={handleChange}
-        />
-      </div>
+      <h1 className="mt-5">Register Doctor's specialty</h1>
+     
       <div className="mt-4">
         <label className="h3 form-label">Doctor Name</label>
         <input

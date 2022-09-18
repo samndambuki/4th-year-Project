@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using databaseContext.Data;
 
@@ -11,9 +12,10 @@ using databaseContext.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ehealthdbcontext))]
-    partial class ehealthdbcontextModelSnapshot : ModelSnapshot
+    [Migration("20220918024543_frontendupdates")]
+    partial class frontendupdates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -336,6 +338,9 @@ namespace backend.Migrations
                     b.Property<string>("SpecialtyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("doctorId")
+                        .HasColumnType("int");
 
                     b.HasKey("specialtyId");
 
